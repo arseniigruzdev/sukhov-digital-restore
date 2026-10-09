@@ -12,6 +12,15 @@ const redirects=new Map(manifest.redirects.map(r=>[r.from,r]));
 const types={'.html':'text/html; charset=utf-8','.css':'text/css; charset=utf-8','.js':'text/javascript; charset=utf-8','.json':'application/json; charset=utf-8','.webmanifest':'application/manifest+json; charset=utf-8','.xml':'application/xml; charset=utf-8','.txt':'text/plain; charset=utf-8','.png':'image/png','.ico':'image/x-icon'};
 const resources=new Set(['robots.txt','sitemap.xml','llms.txt','llms-full.txt','site.webmanifest']);
 const noindex='<meta name="robots" content="noindex, nofollow">';
+const canonicalOrigin='https://sukhov-digital.ru';
+const canonicalHost='sukhov-digital.ru';
+function productionLocation(req,url,canonicalPath){
+ // Dokploy passes the original Host and sets X-Forwarded-Proto on its private upstream.
+ const forwarded=typeof req.headers['x-forwarded-proto']==='string'?req.headers['x-forwarded-proto'].split(',')[0].trim().toLowerCase():null;
+ const scheme=forwarded==='https'||forwarded==='http'?forwarded:req.socket.encrypted?'https':'http';
+ let hostname;try{hostname=new URL('http://'+(req.headers.host||'')).hostname;}catch{hostname='';}
+ return scheme!=='https'||hostname!==canonicalHost||url.pathname!==canonicalPath?canonicalOrigin+canonicalPath+url.search:null;
+}
 const server=http.createServer(async(req,res)=>{
  res.setHeader('X-Content-Type-Options','nosniff');
  res.setHeader('Referrer-Policy','strict-origin-when-cross-origin');
@@ -20,6 +29,11 @@ const server=http.createServer(async(req,res)=>{
  let url;try{url=new URL(req.url,'http://localhost');}catch{res.writeHead(400);res.end();return;}
  const pathname=url.pathname;
  if(pathname==='/health'){res.writeHead(200,{'Content-Type':'application/json; charset=utf-8','Cache-Control':'no-store'});res.end(req.method==='HEAD'?'':JSON.stringify({status:'ok',mode}));return;}
+ if(mode==='production'){
+   const alias=redirects.get(pathname);
+   const canonicalPath=routes.get(pathname)?.status===200?pathname:alias&&routes.get(alias.to)?.status===200?alias.to:null;
+   if(canonicalPath){const location=productionLocation(req,url,canonicalPath);if(location){res.writeHead(301,{'Location':location});res.end();return;}}
+ }
  if(redirects.has(pathname)){const r=redirects.get(pathname);res.writeHead(r.status,{'Location':r.to+url.search});res.end();return;}
  let route=routes.get(pathname);
  let file=route?.file,status=route?.status||404;
@@ -27,6 +41,7 @@ const server=http.createServer(async(req,res)=>{
  if(!file)file='404.html';
  try{
    let content=await readFile(path.join(root,file));
+   if(mode==='production'&&status===200&&!route){const location=productionLocation(req,url,pathname);if(location){res.writeHead(301,{'Location':location});res.end();return;}}
    const ext=path.extname(file),type=types[ext]||'application/octet-stream';
    if(ext==='.html')content=Buffer.from(content.toString().replace(noindex,mode==='staging'||status!==200?noindex:'<meta name="robots" content="index, follow">'));
    if(pathname==='/robots.txt')content=Buffer.from(`User-agent: *\n${mode==='staging'?'Disallow: /':'Allow: /'}\nSitemap: ${manifest.canonicalBase}/sitemap.xml\n`);
