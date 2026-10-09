@@ -1,0 +1,21 @@
+{
+  "name": "Сценарии AI",
+  "short_name": "Сценарии AI",
+  "lang": "ru",
+  "start_url": "/",
+  "display": "browser",
+  "background_color": "#fafaf7",
+  "theme_color": "#4c58a6",
+  "icons": [
+    {
+      "src": "/assets/favicon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/assets/favicon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

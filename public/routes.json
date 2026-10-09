@@ -1,0 +1,70 @@
+{
+  "domain": "sukhov-digital.ru",
+  "canonicalBase": "https://sukhov-digital.ru",
+  "editorialDate": "2026-10-09",
+  "routes": [
+    {
+      "path": "/",
+      "status": 200,
+      "file": "index.html",
+      "indexable": true,
+      "type": "informational-landing",
+      "title": "Сценарии AI — автоматизация контента, продаж и бизнеса",
+      "description": "Шесть сценариев AI-автоматизации: контент-завод, продавец с CRM, база знаний, SEO-статьи, Reels и Shorts, сбор контента. Инструменты n8n и make.",
+      "lastmod": "2026-10-09"
+    },
+    {
+      "path": "/cookie-policy/",
+      "status": 200,
+      "file": "cookie-policy/index.html",
+      "indexable": true,
+      "type": "educational-explainer",
+      "title": "Файлы cookie: что это и как ими управлять — Сценарии AI",
+      "description": "Что такое файлы cookie, чем отличаются необходимые, аналитические и функциональные cookie и как управлять ими в настройках браузера.",
+      "lastmod": "2026-10-09"
+    },
+    {
+      "path": "/blog/",
+      "status": 410,
+      "file": "410.html",
+      "indexable": false,
+      "reason": "Raw blog explicitly reports no published articles; no independent material"
+    },
+    {
+      "path": "/about/",
+      "status": 404,
+      "file": "404.html",
+      "indexable": false,
+      "reason": "No successful archived substantive content in closed download report"
+    },
+    {
+      "path": "/public-offer/",
+      "status": 404,
+      "file": "404.html",
+      "indexable": false,
+      "reason": "No successful archived substantive content in closed download report"
+    },
+    {
+      "path": "/privacy-policy/",
+      "status": 404,
+      "file": "404.html",
+      "indexable": false,
+      "reason": "No successful archived substantive content in closed download report"
+    }
+  ],
+  "redirects": [
+    {
+      "from": "/cookie-policy",
+      "to": "/cookie-policy/",
+      "status": 301,
+      "preserveQuery": true
+    }
+  ],
+  "unknownPathStatus": 404,
+  "globalSlashNormalization": false,
+  "spaFallback": false,
+  "search": {
+    "existed": false,
+    "added": false
+  }
+}

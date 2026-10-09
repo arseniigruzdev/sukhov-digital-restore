@@ -1,0 +1,3 @@
+User-agent: *
+Disallow: /
+Sitemap: https://sukhov-digital.ru/sitemap.xml
