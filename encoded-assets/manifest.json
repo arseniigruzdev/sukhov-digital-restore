@@ -1,0 +1,80 @@
+[
+  {
+    "path": "public/assets/brand-mark.png",
+    "bytes": 317629,
+    "sha256": "ab25644010772c656ca36021fd8145e0df469b54dab8252adbacad29d2e02cbb",
+    "chunks": [
+      "brand-mark-png-0.b64",
+      "brand-mark-png-1.b64",
+      "brand-mark-png-2.b64",
+      "brand-mark-png-3.b64",
+      "brand-mark-png-4.b64",
+      "brand-mark-png-5.b64",
+      "brand-mark-png-6.b64",
+      "brand-mark-png-7.b64",
+      "brand-mark-png-8.b64",
+      "brand-mark-png-9.b64",
+      "brand-mark-png-10.b64",
+      "brand-mark-png-11.b64",
+      "brand-mark-png-12.b64"
+    ]
+  },
+  {
+    "path": "public/assets/favicon-16.png",
+    "bytes": 561,
+    "sha256": "1dbbf22890eb062faa7348e9c21422091c9da9311122ca3e943f2ccabf1e418a",
+    "chunks": [
+      "favicon-16-png-0.b64"
+    ]
+  },
+  {
+    "path": "public/assets/favicon-180.png",
+    "bytes": 11430,
+    "sha256": "a2d47322a9b5c9bb89a1dc6d4a0fff1638a475b7873871051e46a9fcd8b8e41b",
+    "chunks": [
+      "favicon-180-png-0.b64"
+    ]
+  },
+  {
+    "path": "public/assets/favicon-192.png",
+    "bytes": 12681,
+    "sha256": "f5cf49e89a10bb718bc483bbd37ae1c6828cba7f415db522d237692ed2d1d573",
+    "chunks": [
+      "favicon-192-png-0.b64"
+    ]
+  },
+  {
+    "path": "public/assets/favicon-32.png",
+    "bytes": 1238,
+    "sha256": "e391cd66244192b7aec309a43576e006b6d4a62e42648acd52ab557a463dcd95",
+    "chunks": [
+      "favicon-32-png-0.b64"
+    ]
+  },
+  {
+    "path": "public/assets/favicon-48.png",
+    "bytes": 1900,
+    "sha256": "a57d8c479b63b2cdf2e61bc0b5fb15b5d8684999ceae5b17dfd9ef4015e3c5d7",
+    "chunks": [
+      "favicon-48-png-0.b64"
+    ]
+  },
+  {
+    "path": "public/assets/favicon-512.png",
+    "bytes": 72050,
+    "sha256": "db48b7368b5bcd9649deddfd9bcd855009a9acda4e1d474412ad34635f6b57dd",
+    "chunks": [
+      "favicon-512-png-0.b64",
+      "favicon-512-png-1.b64",
+      "favicon-512-png-2.b64"
+    ]
+  },
+  {
+    "path": "public/assets/favicon.ico",
+    "bytes": 3753,
+    "sha256": "8e530a59c2da9f052d6a2858863bada1516383b48360cfcf9161e8d98ac41c6f",
+    "chunks": [
+      "favicon-ico-0.b64"
+    ]
+  }
+]
