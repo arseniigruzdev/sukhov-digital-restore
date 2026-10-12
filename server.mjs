@@ -18,7 +18,8 @@ const umamiOrigin='http://umami-z130tpk32zdxilgm3zptogxx.159.194.205.161.sslip.i
 const umamiId=/^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$/i.test(process.env.UMAMI_WEBSITE_ID||'')?process.env.UMAMI_WEBSITE_ID:null;
 const umamiEnabled=mode==='production'&&!!umamiId;
 const moeEnabled=mode==='production'&&process.env.MOEVIDEO_ENABLED==='1';
-const moeLoaderMode=process.env.MOEVIDEO_LOADER_MODE==='direct'?'direct':'proxy';
+// First-party loading requires explicit confirmation of actual player initialization.
+const moeLoaderMode=process.env.MOEVIDEO_LOADER_MODE==='proxy'&&process.env.MOEVIDEO_PROXY_VERIFIED==='1'?'proxy':'direct';
 const engagementScript=`<script>
 window.setTimeout(function () {
   var attempts = 0;
