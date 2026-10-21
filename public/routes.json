@@ -32,10 +32,13 @@
     },
     {
       "path": "/about/",
-      "status": 404,
-      "file": "404.html",
-      "indexable": false,
-      "reason": "No successful archived substantive content in closed download report"
+      "status": 200,
+      "file": "about/index.html",
+      "indexable": true,
+      "type": "about",
+      "title": "О проекте «Сценарии AI» — автоматизация контента и бизнеса",
+      "description": "О проекте «Сценарии AI»: кому полезны материалы об AI-автоматизации, какие задачи разбираются с n8n и make и с чего начать знакомство со сценариями.",
+      "lastmod": "2026-10-21"
     },
     {
       "path": "/public-offer/",
@@ -56,6 +59,12 @@
     {
       "from": "/cookie-policy",
       "to": "/cookie-policy/",
+      "status": 301,
+      "preserveQuery": true
+    },
+    {
+      "from": "/about",
+      "to": "/about/",
       "status": 301,
       "preserveQuery": true
     }
