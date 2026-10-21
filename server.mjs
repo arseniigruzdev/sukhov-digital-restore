@@ -2,6 +2,7 @@ import http from 'node:http';
 import {readFile} from 'node:fs/promises';
 import {fileURLToPath} from 'node:url';
 import path from 'node:path';
+const SP_HELPER="(function(){function w(f,t){t=t||0;if(window.umami&&window.umami.track)return f();if(t<20)setTimeout(function(){w(f,t+1)},500)}function b(h){return h.indexOf('www.')===0?h.slice(4):h}document.addEventListener('click',function(e){var a=e.target&&e.target.closest?e.target.closest('a[href]'):null;if(!a)return;var u;try{u=new URL(a.href,location.href)}catch(_){return}if((u.protocol!=='http:'&&u.protocol!=='https:')||b(u.hostname)===b(location.hostname))return;w(function(){window.umami.track('outbound',{url:u.href.slice(0,500),domain:u.hostname})})},true);var K='sp_engaged';try{if(sessionStorage.getItem(K)==='1')return}catch(_){}var i=false,v=0,l=Date.now();['scroll','mousemove','touchstart','keydown','click'].forEach(function(t){addEventListener(t,function(){i=true},{passive:true,once:true})});var T=setInterval(function(){var n=Date.now();if(document.visibilityState==='visible')v+=n-l;l=n;if(i&&v>=10000){clearInterval(T);w(function(){window.umami.track('engaged');try{sessionStorage.setItem(K,'1')}catch(_){}})}},1000);setTimeout(function(){clearInterval(T)},1800000)})();";
 
 const root=path.join(path.dirname(fileURLToPath(import.meta.url)),'public');
 const mode=process.env.SITE_MODE==='production'?'production':'staging';
@@ -69,7 +70,7 @@ const moeSnippet=`<script type="text/javascript">
   })();
 </script>`;
 function integrateHtml(html){
- if(umamiEnabled)html=html.replace('</head>',`<script defer src="/static/js/main-core.js" data-host-url="/static/js" data-website-id="${umamiId}" data-domains="sukhov-digital.ru,www.sukhov-digital.ru"></script>${engagementScript}</head>`);
+ if(umamiEnabled)html=html.replace('</head>',`<script defer src="/static/js/main-core.js" data-host-url="/static/js" data-website-id="${umamiId}" data-domains="sukhov-digital.ru,www.sukhov-digital.ru"></script>${engagementScript}<script>${SP_HELPER}</script></head>`);
  if(moeEnabled)html=html.replace('</body>',(moeLoaderMode==='proxy'?moeSnippet.replace('script.src = "https://cdn1.moe.video/p/cr.js";','script.src = "/static/js/content-roll-loader.js";'):moeSnippet)+'</body>');
  return html;
 }
