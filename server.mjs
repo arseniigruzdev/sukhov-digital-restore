@@ -70,7 +70,7 @@ const moeSnippet=`<script type="text/javascript">
   })();
 </script>`;
 function integrateHtml(html){
- if(umamiEnabled)html=html.replace('</head>',`<script defer src="/static/js/main-core.js" data-host-url="/static/js" data-website-id="${umamiId}" data-domains="sukhov-digital.ru,www.sukhov-digital.ru"></script>${engagementScript}<script>${SP_HELPER}</script></head>`);
+ if(umamiEnabled)html=html.replace('</head>',`<script>(function(){function a(){var s=document.createElement('script');s.src='/static/js/main-core.js';s.async=true;s.dataset.hostUrl='/static/js';s.dataset.websiteId='${umamiId}';s.dataset.domains='sukhov-digital.ru,www.sukhov-digital.ru';document.head.appendChild(s)}function q(){'requestIdleCallback' in window?requestIdleCallback(a,{timeout:3000}):setTimeout(a,1)}document.readyState==='complete'?q():addEventListener('load',q,{once:true})})();</script>${engagementScript}<script>${SP_HELPER}</script></head>`);
  if(moeEnabled)html=html.replace('</body>',(moeLoaderMode==='proxy'?moeSnippet.replace('script.src = "https://cdn1.moe.video/p/cr.js";','script.src = "/static/js/content-roll-loader.js";'):moeSnippet)+'</body>');
  return html;
 }
@@ -98,7 +98,7 @@ async function proxy(req,res,url,isMoe){
    for await(const chunk of req){size+=chunk.length;if(size>1024*1024){res.writeHead(413);res.end();return;}chunks.push(chunk);}
    body=Buffer.concat(chunks);
   }
-  const upstream=await fetch(target,{method:req.method,headers,body,redirect:'manual',signal:AbortSignal.timeout(10000)});
+  const upstream=await fetch(target,{method:req.method,headers,body,redirect:'manual',signal:AbortSignal.timeout(4000)});
   const responseHeaders={};
   for(const name of ['content-type','etag','last-modified'])if(upstream.headers.has(name))responseHeaders[name]=upstream.headers.get(name);
   // No Set-Cookie, auth, content encoding or upstream length forwarded after decompression.
