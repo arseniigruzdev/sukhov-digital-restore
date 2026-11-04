@@ -15,7 +15,7 @@ const resources=new Set(['robots.txt','sitemap.xml','llms.txt','llms-full.txt','
 const noindex='<meta name="robots" content="noindex, nofollow">';
 const canonicalOrigin='https://sukhov-digital.ru';
 const canonicalHost='sukhov-digital.ru';
-const umamiOrigin='http://umami-z130tpk32zdxilgm3zptogxx.159.194.205.161.sslip.io';
+const umamiOrigin='https://stats.backend-system.ru';
 const umamiId=/^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$/i.test(process.env.UMAMI_WEBSITE_ID||'')?process.env.UMAMI_WEBSITE_ID:null;
 const umamiEnabled=mode==='production'&&!!umamiId;
 const moeEnabled=mode==='production'&&process.env.MOEVIDEO_ENABLED==='1';
